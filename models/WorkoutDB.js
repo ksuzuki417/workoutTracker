@@ -21,7 +21,10 @@ const WorkoutSchema = new Schema({
         type: Number,
     },
     duration: {
-        type: TimeRanges,
+        type: Number,
+    },
+    distane: {
+        type: Number,
     }
 });
 
