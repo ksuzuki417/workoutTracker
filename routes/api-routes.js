@@ -1,4 +1,4 @@
-const Workout = require ("../models/WorkoutDB");
+const Workout = require ("../models/WorkoutDB.js");
 const db = require("../models");
 
 module.exports = function(app) {
@@ -16,12 +16,12 @@ module.exports = function(app) {
 
     //previous workouts
     app.get("/api/workouts", function(req, res) {
-        Workout.find({}, function(error, data) {
-            if (error) {
-                res.send(error);
-            } else {
-                res.json(data);
-            }
+        Workout.find({})
+        .then(dbWorkout => {
+            res.json(dbWorkout)
+        })
+        .catch(err => {
+            res.json(err)
         });
     });
 
@@ -37,13 +37,14 @@ module.exports = function(app) {
             });
     });
 
+
     app.get("/api/workouts/range", function(req, res){
-        Workout.find({}.limit(10), (error, data) => {
-            if (error) {
-                res.send(error);
-            } else {
-                res.json(data);
-            }
+        Workout.find({})
+        .then(dbWorkout => {
+            res.json(dbWorkout)
+        })
+        .catch(err => {
+            res.json(err)
         });
     });
 }
